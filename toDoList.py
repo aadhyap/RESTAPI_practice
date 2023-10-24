@@ -18,7 +18,7 @@ def get_tasks():
   offset = int(request.args.get('offset', 0))
   limit = int(request.args.get('limit', len(tasks)))
   paginated_tasks = tasks[offset:offset+limit]
-  return jsonify(tasks)
+  return jsonify(paginated_tasks)
 
 #implement authentication
 def check_auth(username, password):
@@ -78,7 +78,7 @@ def update_task(id):
     task['task'] = request.json['task']
     return jsonify(task)
 
-@app.toute('/tasks/<int:id>', methods=['DELETE'])
+@app.route('/tasks/<int:id>', methods=['DELETE'])
 
 def delete_task(id):
     global tasks
