@@ -8,6 +8,10 @@ task_id = 1
 @app.route('/tasks', methods=['Get'])
 
 def get_tasks():
+  #pagination
+  offset = int(request.args.get('offset', 0))
+  limit = int(request.args.get('limit', len(tasks)))
+  paginated_tasks = tasks[offset:offset+limit]
   return jsonify(tasks)
 
 
